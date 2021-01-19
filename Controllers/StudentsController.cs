@@ -18,7 +18,34 @@ namespace SMProject.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            List<Student> list = new List<Student>
+            {
+                new Student{
+                    Id=10,
+                    FullName="student1",
+                    Level="Grade 7",
+                    Email="student1@schools.com",
+                    Mobile="966503712381",
+                    ParentMobile="966503712381",                    
+                },
+                new Student{
+                    Id=10,
+                    FullName="student2",
+                    Level="Grade 8",
+                    Email="student2@schools.com",
+                    Mobile="966503712383",
+                    ParentMobile="966503712384",
+                },
+                new Student{
+                    Id=10,
+                    FullName="student3",
+                    Level="Grade 9",
+                    Email="student3@schools.com",
+                    Mobile="966503712384",
+                    ParentMobile="966503712385",
+                },
+            };
+            return View(list);
         }
 
         // GET: Students/Details/5
