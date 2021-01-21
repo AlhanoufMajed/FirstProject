@@ -18,33 +18,56 @@ namespace SMProject.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            List<Student> list = new List<Student>
-            {
-                new Student{
-                    Id=10,
-                    FullName="student1",
-                    Level="Grade 7",
-                    Email="student1@schools.com",
-                    Mobile="966503712381",
-                    ParentMobile="966503712381",                    
-                },
-                new Student{
-                    Id=10,
-                    FullName="student2",
-                    Level="Grade 8",
-                    Email="student2@schools.com",
-                    Mobile="966503712383",
-                    ParentMobile="966503712384",
-                },
-                new Student{
-                    Id=10,
-                    FullName="student3",
-                    Level="Grade 9",
-                    Email="student3@schools.com",
-                    Mobile="966503712384",
-                    ParentMobile="966503712385",
-                },
-            };
+            //List<Student> list = new List<Student>
+            //{
+            //    new Student{
+            //        Id=10,
+            //        FullName="student1",
+            //        Level="Grade 7",
+            //        Email="student1@schools.com",
+            //        Mobile="966503712381",
+            //        ParentMobile="966503712381",                    
+            //    },
+            //    new Student{
+            //        Id=10,
+            //        FullName="student2",
+            //        Level="Grade 8",
+            //        Email="student2@schools.com",
+            //        Mobile="966503712383",
+            //        ParentMobile="966503712384",
+            //    },
+            //    new Student{
+            //        Id=10,
+            //        FullName="student3",
+            //        Level="Grade 9",
+            //        Email="student3@schools.com",
+            //        Mobile="966503712384",
+            //        ParentMobile="966503712385",
+            //    },
+            //};
+            //List<Course> list = new List<Course>
+            //{
+            //    new Course {
+
+            //    Id= 111,
+            //    Name = "Math1" ,
+            //    Grade = "Five",
+            //    Semester= "2",
+
+            //    },
+
+            //     new Course {
+
+            //    Id= 121,
+            //    Name = "Science" ,
+            //    Grade = "Five",
+            //    Semester= "1",
+
+            //    }
+
+            //};
+
+            var list = db.Students.ToList(); // جبت البيانات من الموديل 
             return View(list);
         }
 
@@ -63,6 +86,16 @@ namespace SMProject.Controllers
             return View(student);
         }
 
+        // [ActionName ("ffind")]
+
+        //[HttpGet]
+        public ActionResult SearchStudent(int id)
+        {
+
+            Student stu = db.Students.Find(id);
+        
+            return View(stu);
+        }
         // GET: Students/Create
         public ActionResult Create()
         {
@@ -85,6 +118,26 @@ namespace SMProject.Controllers
 
             return View(student);
         }
+
+        public ActionResult Save()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save([Bind(Include = "Id,FullName,Level,Email,Mobile")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Students.Add(student);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(student);
+        }
+
 
         // GET: Students/Edit/5
         public ActionResult Edit(int? id)

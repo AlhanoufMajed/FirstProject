@@ -1,0 +1,44 @@
+﻿@model SMProject.Models.Student
+
+
+@{
+    ViewBag.Title = "SearchStudent";
+}
+
+<h2>SearchStudent</h2>
+
+
+
+<table class="table table-hover">
+    <th>
+        @Html.DisplayNameFor(model => model.Id)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.FullName)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Level)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Mobile)
+    </th>
+
+
+
+  
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Mobile)
+            </td>
+
+        </tr>

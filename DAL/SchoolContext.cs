@@ -15,5 +15,8 @@ namespace SMProject.DAL
         }
 
         public System.Data.Entity.DbSet<SMProject.Models.Student> Students { get; set; }
-    }
+        public System.Data.Entity.DbSet<SMProject.Models.Course> Courses { get; set; }
+
+		public System.Data.Entity.DbSet<SMProject.Models.Teacher> Teachers { get; set; }
+	}
 }
